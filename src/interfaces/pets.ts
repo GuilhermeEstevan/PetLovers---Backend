@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { TPetCard } from "./models";
+import { TPetCard, TPetGallery } from "./models";
 
 export type TCreatePetRequest = {
   name: string;
@@ -24,7 +24,7 @@ export type TPet = {
   createdAt: Date;
   updatedAt: Date;
   petCards: TPetCard[] | null;
-  gallery: any;
+  gallery: TPetGallery[] | null;
 };
 
 export interface IQueryParams {

@@ -12,7 +12,21 @@ const editPetService = async (
 ): Promise<TPet | null> => {
   // CASO OCORRA UPLOAD DE NOVA FOTO
   let imageUrl;
+
   if (imageFile) {
+    // Verificar condições da imagem
+    if (!imageFile.mimetype.startsWith("image")) {
+      throw new BadRequestError("Please Upload an Image");
+    }
+
+    const maxSize = 2 * 1024 * 1024;
+
+    if (imageFile.size > maxSize) {
+      throw new BadRequestError(
+        `Please upload an image smaller than ${maxSize}KB`
+      );
+    }
+
     const cloudinaryResponse = await cloudinary.uploader.upload(
       imageFile.path,
       {

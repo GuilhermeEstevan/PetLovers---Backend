@@ -9,7 +9,7 @@ type TQueryObject = {
 const getAllPetsService = async (
   userId: string,
   query: IQueryParams
-): Promise<TGetAllPetsResponse> => {
+): Promise<TGetAllPetsResponse | null> => {
   const queryObject: TQueryObject = {
     createdBy: new Types.ObjectId(userId),
   };

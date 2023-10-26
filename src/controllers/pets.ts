@@ -7,6 +7,7 @@ import getAllPetsService from "../services/Pet/getAllPets";
 
 import editPetService from "../services/Pet/editPet";
 import deletePetService from "../services/Pet/deletePet";
+import getSinglePetService from "../services/Pet/getSinglePet";
 
 const createPet = async (
   req: Request,
@@ -33,6 +34,15 @@ const getAllPets = async (
   return res.status(StatusCodes.OK).json(response);
 };
 
+const getSinglePet = async (req: Request, res: Response) => {
+  const { userId } = res.locals;
+  const { petId } = req.params;
+
+  const response = await getSinglePetService(petId, userId);
+
+  return res.status(StatusCodes.OK).json(response);
+};
+
 const editPet = async (
   req: Request,
   res: Response
@@ -44,7 +54,7 @@ const editPet = async (
 
   const response = await editPetService(req.body, petId, userId, imageFile);
 
-  return res.status(StatusCodes.OK).json({ msg: response });
+  return res.status(StatusCodes.OK).json(response);
 };
 
 const deletePet = async (
@@ -60,4 +70,4 @@ const deletePet = async (
   return res.status(StatusCodes.OK).json({ msg: response });
 };
 
-export { createPet, getAllPets, editPet, deletePet };
+export { createPet, getAllPets, editPet, deletePet, getSinglePet };

@@ -1,12 +1,21 @@
 import { Router } from "express";
-import { createPet, deletePet, editPet, getAllPets } from "../controllers/pets";
+import {
+  createPet,
+  deletePet,
+  editPet,
+  getAllPets,
+  getSinglePet,
+} from "../controllers/pets";
 import {
   createPetCard,
   deletePetCard,
   editPetCard,
 } from "../controllers/petCard";
 import uploadImageMiddleware from "../middleware/UploadImage";
-import { uploadImageToGallery } from "../controllers/petGallery";
+import {
+  deleteImageFromGallery,
+  uploadImageToGallery,
+} from "../controllers/petGallery";
 
 const petsRoutes: Router = Router();
 
@@ -17,7 +26,7 @@ petsRoutes
   .get(getAllPets);
 
 // Rota para buscar um Pet específico
-petsRoutes.route("/getPet/:petId").get();
+petsRoutes.route("/getPet/:petId").get(getSinglePet);
 
 // Rota para criar um PetCard
 petsRoutes.route("/createPetCard/:petId").patch(createPetCard);
@@ -36,9 +45,12 @@ petsRoutes
   .delete(deletePetCard)
   .patch(editPetCard);
 
-// Rota para a galeria do Pet
+// Rota para adcionar imagem a galeria do Pet
 petsRoutes
   .route("/:petId/gallery")
   .patch(uploadImageMiddleware.single("image"), uploadImageToGallery);
+
+// Rota para excluir uma imagem da galeria do Pet
+petsRoutes.route("/:petId/gallery/:imageId").delete(deleteImageFromGallery);
 
 export default petsRoutes;

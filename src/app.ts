@@ -1,5 +1,6 @@
 import "express-async-errors";
 import express, { Application } from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import usersRoutes from "./routes/users";
 import handleErrorsMiddleware from "./middleware/handleErrors";
@@ -19,6 +20,9 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY ?? "seu_valor_padrao",
   api_secret: process.env.CLOUD_API_SECRET ?? "seu_valor_padrao",
 });
+
+// CORS
+app.use(cors());
 
 // Documentation
 app.get("/", (req, res) => {

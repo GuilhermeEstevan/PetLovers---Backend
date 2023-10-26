@@ -1,3 +1,4 @@
+import BadRequestError from "../../errors/badRequest";
 import {
   TRegisterUserRequest,
   TRegisterUserResponse,
@@ -7,6 +8,12 @@ import UserModel from "../../models/users";
 const registerUserService = async (
   data: TRegisterUserRequest
 ): Promise<TRegisterUserResponse> => {
+  const { name, email, password } = data;
+
+  if (!name || !email || !password) {
+    throw new BadRequestError("Please provide name, email and password!");
+  }
+
   const user = await UserModel.create(data);
 
   const response: TRegisterUserResponse = {

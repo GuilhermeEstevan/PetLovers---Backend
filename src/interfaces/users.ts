@@ -24,3 +24,18 @@ export type TLoginUserResponse = {
   phone: string;
   token: string;
 };
+
+export type TUpdateUserRequest = {
+  email: string;
+  lastName: string;
+  name: string;
+  phone: string;
+};
+
+export type TUpdateUserResponse = {
+  email: string;
+  lastName: string;
+  name: string;
+  phone: string;
+  token: string;
+};

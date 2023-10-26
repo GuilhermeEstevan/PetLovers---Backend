@@ -1,8 +1,13 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import registerUserService from "../services/user/registerUser";
-import { TRegisterUserResponse } from "../interfaces/users";
+import {
+  TLoginUserResponse,
+  TRegisterUserResponse,
+  TUpdateUserResponse,
+} from "../interfaces/users";
 import loginUserService from "../services/user/loginUser";
+import updateUserService from "../services/user/updateUser";
 
 const register = async (
   req: Request,
@@ -13,11 +18,25 @@ const register = async (
   return res.status(StatusCodes.OK).json({ user: response });
 };
 
-const login = async (req: Request, res: Response): Promise<Response> => {
+const login = async (
+  req: Request,
+  res: Response
+): Promise<Response<TLoginUserResponse>> => {
   const response = await loginUserService(req.body);
   console.log(response);
 
   return res.status(StatusCodes.OK).json({ user: response });
 };
 
-export { register, login };
+const updateUser = async (
+  req: Request,
+  res: Response
+): Promise<Response<TUpdateUserResponse>> => {
+  const { userId } = res.locals;
+
+  const response = await updateUserService(req.body, userId);
+
+  return res.status(StatusCodes.OK).json({ user: response });
+};
+
+export { register, login, updateUser };

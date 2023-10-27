@@ -32,7 +32,7 @@ export interface IQueryParams {
 }
 
 export type TGetAllPetsResponse = {
-  allPets: TPet[] | null;
+  pets: TPet[] | null;
   totalPets: number;
   numOfPages: number;
 };

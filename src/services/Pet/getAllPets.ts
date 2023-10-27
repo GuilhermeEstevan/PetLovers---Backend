@@ -23,11 +23,11 @@ const getAllPetsService = async (
 
   result.skip(skip).limit(limit);
 
-  const allPets = await result;
+  const pets = await result;
   const totalPets = await PetModel.countDocuments(queryObject);
   const numOfPages = Math.ceil(totalPets / limit);
 
-  return { allPets, totalPets, numOfPages };
+  return { pets, totalPets, numOfPages };
 };
 
 export default getAllPetsService;

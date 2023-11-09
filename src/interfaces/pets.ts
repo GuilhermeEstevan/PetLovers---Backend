@@ -52,3 +52,7 @@ export type TEditPetRequest = {
   birthday: Date;
   photo: string;
 };
+
+export type TAddGalleryPhotoRequest = {
+  image: string;
+};

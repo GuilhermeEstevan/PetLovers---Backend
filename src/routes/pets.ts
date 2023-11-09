@@ -20,10 +20,7 @@ import {
 const petsRoutes: Router = Router();
 
 // Rota para criar um Pet e buscar todos Pets
-petsRoutes
-  .route("/")
-  .post(uploadImageMiddleware.single("photo"), createPet)
-  .get(getAllPets);
+petsRoutes.route("/").post(createPet).get(getAllPets);
 
 // Rota para buscar um Pet específico
 petsRoutes.route("/getPet/:petId").get(getSinglePet);
@@ -32,9 +29,7 @@ petsRoutes.route("/getPet/:petId").get(getSinglePet);
 petsRoutes.route("/createPetCard/:petId").patch(createPetCard);
 
 // Rota para editar as informações de um pet
-petsRoutes
-  .route("/editPet/:petId")
-  .patch(uploadImageMiddleware.single("photo"), editPet);
+petsRoutes.route("/editPet/:petId").patch(editPet);
 
 // Rota para excluir um pet
 petsRoutes.route("/deletePet/:petId").delete(deletePet);
@@ -46,9 +41,7 @@ petsRoutes
   .patch(editPetCard);
 
 // Rota para adcionar imagem a galeria do Pet
-petsRoutes
-  .route("/:petId/gallery")
-  .patch(uploadImageMiddleware.single("image"), uploadImageToGallery);
+petsRoutes.route("/:petId/gallery").patch(uploadImageToGallery);
 
 // Rota para excluir uma imagem da galeria do Pet
 petsRoutes.route("/:petId/gallery/:imageId").delete(deleteImageFromGallery);

@@ -13,11 +13,13 @@ const createPet = async (
   req: Request,
   res: Response
 ): Promise<Response<TPet>> => {
-  const imageFile = req.file;
-  if (!imageFile) throw new BadRequestError("No file uploaded");
+  // console.log(req.file);
+
+  // const imageFile = req.file;
+  // if (!imageFile) throw new BadRequestError("No file uploaded");
 
   const { userId } = res.locals;
-  const pet = await createPetService(req.body, userId, imageFile);
+  const pet = await createPetService(req.body, userId);
   console.log(pet);
 
   return res.status(StatusCodes.CREATED).json({ pet });

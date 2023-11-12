@@ -8,8 +8,13 @@ const editPetCardService = async (
   petCardId: string,
   userId: string
 ): Promise<string> => {
-  if (data.procedure === "" || data.description === "" || !data.date) {
-    throw new BadRequestError("Please provide Procedure, Description and Date");
+  if (
+    data.serviceType === "" ||
+    data.service === "" ||
+    data.description === "" ||
+    !data.date
+  ) {
+    throw new BadRequestError("Please provide vaccine, Description and Date");
   }
 
   const pet = await PetModel.findOne({
@@ -29,7 +34,8 @@ const editPetCardService = async (
     throw new BadRequestError("PetCard not found");
   }
 
-  petCard.procedure = data.procedure;
+  petCard.serviceType = data.serviceType;
+  petCard.service = data.service;
   petCard.description = data.description;
   petCard.date = data.date;
 

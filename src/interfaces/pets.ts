@@ -38,7 +38,8 @@ export type TGetAllPetsResponse = {
 };
 
 export type TPetCardRequest = {
-  procedure: string;
+  serviceType: string;
+  service: string;
   description: string;
   date: Date;
 };

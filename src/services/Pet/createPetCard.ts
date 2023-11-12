@@ -9,8 +9,15 @@ const createPetCardService = async (
   petId: string,
   userId: string
 ): Promise<string> => {
-  if (data.procedure === "" || data.description === "" || !data.date) {
-    throw new BadRequestError("Please Provide procedure, description and date");
+  if (
+    data.serviceType === "" ||
+    data.service === "" ||
+    data.description === "" ||
+    !data.date
+  ) {
+    throw new BadRequestError(
+      "Please Provide service, procedure, description and date"
+    );
   }
 
   const pet = await PetModel.findOne({
@@ -24,7 +31,8 @@ const createPetCardService = async (
 
   const newPetCard: TPetCard = {
     _id: new Types.ObjectId(),
-    procedure: data.procedure,
+    serviceType: data.serviceType,
+    service: data.service,
     description: data.description,
     date: data.date,
   };

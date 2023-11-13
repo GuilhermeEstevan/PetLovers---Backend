@@ -14,7 +14,9 @@ const editPetCardService = async (
     data.description === "" ||
     !data.date
   ) {
-    throw new BadRequestError("Please provide vaccine, Description and Date");
+    throw new BadRequestError(
+      "Please provide serviceType, service, Description and Date"
+    );
   }
 
   const pet = await PetModel.findOne({

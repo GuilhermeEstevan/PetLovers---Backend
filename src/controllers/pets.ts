@@ -13,11 +13,6 @@ const createPet = async (
   req: Request,
   res: Response
 ): Promise<Response<TPet>> => {
-  // console.log(req.file);
-
-  // const imageFile = req.file;
-  // if (!imageFile) throw new BadRequestError("No file uploaded");
-
   const { userId } = res.locals;
   const pet = await createPetService(req.body, userId);
   console.log(pet);
@@ -49,12 +44,11 @@ const editPet = async (
   req: Request,
   res: Response
 ): Promise<Response<TPet>> => {
-  const imageFile = req.file;
   const { petId } = req.params;
   const { userId } = res.locals;
   console.log(req.body);
 
-  const response = await editPetService(req.body, petId, userId, imageFile);
+  const response = await editPetService(req.body, petId, userId);
 
   return res.status(StatusCodes.OK).json(response);
 };

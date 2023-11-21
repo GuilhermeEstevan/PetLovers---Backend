@@ -18,7 +18,7 @@ const uploadImageToGallery = async (
 const deleteImageFromGallery = async (req: Request, res: Response) => {
   const { userId } = res.locals;
   const { petId, imageId } = req.params;
-  console.log(petId);
+
 
   const response = await deleteImageFromGalleryService(petId, imageId, userId);
 

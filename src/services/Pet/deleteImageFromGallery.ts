@@ -26,11 +26,16 @@ const deleteImageFromGalleryService = async (
   }
 
   const imageUrlParts = imageToDelete.image.split("/");
-  const publicId = imageUrlParts[imageUrlParts.length - 1].split(".")[0];
+  let publicId = imageUrlParts
+    .slice(imageUrlParts.indexOf("PetLovers"))
+    .join("/");
+  publicId = publicId.replace(/\.[^.]+$/, "");
+  console.log(publicId);
 
   try {
     await cloudinary.uploader.destroy(publicId);
   } catch (error) {
+    console.log("Erro ao excluir imagem do Cloudinary:", error);
     throw new BadRequestError("Falha ao excluir imagem do Cloudinary");
   }
 

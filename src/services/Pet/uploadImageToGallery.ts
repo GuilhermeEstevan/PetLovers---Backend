@@ -19,6 +19,7 @@ const uploadImageToGalleryService = async (
   }
 
   const { image } = data;
+  console.log(data);
 
   const newImage: TPetGallery = {
     _id: new Types.ObjectId(),

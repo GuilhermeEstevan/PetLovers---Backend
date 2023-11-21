@@ -27,7 +27,7 @@ export interface PetsDocument extends Document {
 
 export type TPetCard = {
   _id: Types.ObjectId;
-  serviceType:string
+  serviceType: string;
   service: string;
   description: string;
   date: Date;

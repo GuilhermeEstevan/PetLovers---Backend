@@ -11,7 +11,6 @@ import {
   deletePetCard,
   editPetCard,
 } from "../controllers/petCard";
-import uploadImageMiddleware from "../middleware/UploadImage";
 import {
   deleteImageFromGallery,
   uploadImageToGallery,

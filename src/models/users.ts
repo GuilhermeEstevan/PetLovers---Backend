@@ -31,6 +31,7 @@ const UserSchema = new Schema<UserDocument>({
     maxlength: 11,
     default: "",
   },
+  reset_token: { type: String, default: undefined },
 });
 
 UserSchema.pre("save", async function hashPassword(next) {
@@ -56,9 +57,7 @@ UserSchema.methods.createJWT = function () {
   return token;
 };
 
-UserSchema.methods.comparePassword = async function (
-  possiblePassword: string
-) {
+UserSchema.methods.comparePassword = async function (possiblePassword: string) {
   const isPasswordCorrect = await bcrypt.compare(
     possiblePassword,
     this.password

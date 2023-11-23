@@ -6,6 +6,7 @@ export interface UserDocument extends Document {
   password: string;
   lastName: string;
   phone: string;
+  reset_token?: string;
   createJWT: () => string;
   comparePassword: (password: string) => boolean;
 }

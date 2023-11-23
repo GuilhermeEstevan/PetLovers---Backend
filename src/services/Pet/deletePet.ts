@@ -1,5 +1,6 @@
 import BadRequestError from "../../errors/badRequest";
 import PetModel from "../../models/pets";
+import { v2 as cloudinary } from "cloudinary";
 
 const deletePetService = async (
   petId: string,
@@ -14,6 +15,23 @@ const deletePetService = async (
 
   if (!pet) {
     throw new BadRequestError("no pet found!");
+  }
+
+  //   Deletar do cloudinary
+  const imageToDelete = pet.photo;
+
+  const imageUrlParts = imageToDelete.split("/");
+  let publicId = imageUrlParts
+    .slice(imageUrlParts.indexOf("PetLovers"))
+    .join("/");
+  publicId = publicId.replace(/\.[^.]+$/, "");
+  console.log(publicId);
+
+  try {
+    await cloudinary.uploader.destroy(publicId);
+  } catch (error) {
+    console.log("Erro ao excluir imagem do Cloudinary:", error);
+    throw new BadRequestError("Falha ao excluir imagem do Cloudinary");
   }
 
   return "Pet Deleted Successfully!";

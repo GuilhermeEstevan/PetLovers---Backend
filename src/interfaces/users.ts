@@ -39,3 +39,9 @@ export type TUpdateUserResponse = {
   phone: string;
   token: string;
 };
+
+export type TEmailRequest = {
+  to: string;
+  subject: string;
+  text: string;
+};

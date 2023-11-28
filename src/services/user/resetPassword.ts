@@ -11,7 +11,7 @@ const resetPasswordService = async (password: string, token: string) => {
   }
 
   user.password = password;
-  delete user.reset_token;
+  user.reset_token = undefined
 
   await user.save();
 

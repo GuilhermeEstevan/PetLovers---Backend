@@ -40,8 +40,19 @@ export type TGetAllPetsResponse = {
 export type TPetCardRequest = {
   serviceType: string;
   service: string;
-  description: string;
+  description?: string;
+  doseNumber?: string;
   date: Date;
+};
+
+export type TEditCardRequest = {
+  serviceType: string;
+  service: string;
+  description?: string;
+  date: Date;
+  doseNumber?: string;
+  vaccineType?: string;
+  nextDueDate?: Date;
 };
 
 export type TEditPetRequest = {

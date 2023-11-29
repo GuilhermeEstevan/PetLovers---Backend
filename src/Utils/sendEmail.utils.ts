@@ -4,8 +4,6 @@ import Mailgen from "mailgen";
 
 class EmailService {
   async sendEmail({ to, subject, text }: TEmailRequest) {
-    console.log(to);
-
     try {
       const transporter = createTransport({
         service: "hotmail",
@@ -67,6 +65,119 @@ class EmailService {
       subject: "Reset Password",
       text: emailBody,
     };
+    return emailTemplate;
+  }
+
+  petBirthdayTemplate(userEmail: string, userName: string, petName: string) {
+    const mailGenerator = new Mailgen({
+      theme: "salted",
+      product: {
+        name: "PetLovers",
+        link: "https://petloverswebsite.netlify.app",
+      },
+    });
+
+    const email = {
+      body: {
+        greeting: "Olá",
+        signature: "Atenciosamente",
+        name: userName,
+        intro: `Desejamos um feliz aniversário para o ${petName} ! 🎉🐾`,
+        outro:
+          "Esperamos que vocês tenham um dia repleto de alegria e momentos especiais juntos.",
+        action: {
+          instructions: "Clique no botão abaixo para visitar nosso site:",
+          button: {
+            color: "#DC4D2F",
+            text: "PetLovers",
+            link: `https://petloverswebsite.netlify.app`,
+          },
+        },
+      },
+    };
+
+    const emailBody = mailGenerator.generate(email);
+
+    const emailTemplate = {
+      to: userEmail,
+      subject: "Aniversário do seu Pet",
+      text: emailBody,
+    };
+    return emailTemplate;
+  }
+
+  vaccineReminderTemplate(
+    userEmail: string,
+    userName: string,
+    petName: string,
+    vaccineName: string,
+    doseNumber: string,
+    dueDate: string,
+    nextDose:string
+  ) {
+    const mailGenerator = new Mailgen({
+      theme: "cerberus", 
+      product: {
+        name: "PetLovers",
+        link: "https://petloverswebsite.netlify.app",
+      },
+    });
+
+    const email = {
+      body: {
+        greeting: "Olá",
+        signature: "Atenciosamente",
+        name: userName,
+        intro: `Lembrete de Vacinação para ${petName} 🐾`,
+        table: {
+          data: [
+            {
+              item: "Vacina",
+              descrição: vaccineName,
+            },
+            {
+              item: "Já tomou:",
+              descrição: `${doseNumber} dose`,
+            },
+            {
+              item: "Próxima:",
+              descrição: `${nextDose} dose`,
+            },
+            {
+              item: "Data de Vencimento",
+              descrição: dueDate,
+            },
+          ],
+          columns: {
+            // Ajuste as larguras das colunas conforme necessário
+            customWidth: {
+              item: "20%",
+              description: "80%",
+            },
+            // Adicione mais propriedades de estilo se necessário
+          },
+        },
+        outro:
+          "Por favor, não se esqueça de dar a vacina ao seu querido pet antes da data de vencimento. A saúde do seu animalzinho é importante para nós!",
+        action: {
+          instructions: "Clique no botão abaixo para mais informações:",
+          button: {
+            color: "#DC4D2F",
+            text: "Detalhes da Vacinação",
+            link: `https://petloverswebsite.netlify.app/vaccine-details?pet=${petName}`,
+          },
+        },
+      },
+    };
+
+    const emailBody = mailGenerator.generate(email);
+
+    const emailTemplate = {
+      to: userEmail,
+      subject: `Lembrete de Vacinação para ${petName}`,
+      text: emailBody,
+    };
+
     return emailTemplate;
   }
 }

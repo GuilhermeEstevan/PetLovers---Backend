@@ -37,8 +37,6 @@ const editPetCardService = async (
 
   // CASO O NOVO PET CARD SEJA DO TIPO VACINA
   if (data.serviceType === "vacina" && data.doseNumber !== undefined) {
-    const nextDueDate = undefined;
-    // nextDueDate.setMonth(nextDueDate.getMonth() + 6);
     const nextDueDateResult = calculateVaccineDoses(
       data.service,
       data.date,

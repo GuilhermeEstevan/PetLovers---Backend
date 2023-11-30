@@ -13,7 +13,7 @@ const handleErrorsMiddleware = (
   };
 
   if (error.code && error.code === 11000) {
-    customError.msg = `Duplicated value for ${Object.keys(error.keyValue)}`;
+    customError.msg = `${Object.keys(error.keyValue)} já cadastrado`;
     customError.statusCode = 400;
   }
 

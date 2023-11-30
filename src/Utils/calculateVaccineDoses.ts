@@ -13,6 +13,7 @@ const calculateVaccineDoses = (
   doseNumber: string
 ): TCalculateVaccineDosesResponse => {
   const formattedDoseNumber: Record<string, number> = {
+    "reforço anual": 0,
     primeira: 1,
     segunda: 2,
     terceira: 3,

@@ -82,7 +82,7 @@ const PetSchema = new mongoose.Schema<PetsDocument>(
           },
           doseNumber: {
             type: String,
-            enum: ["primeira", "segunda", "terceira"],
+            enum: ["primeira", "segunda", "terceira", "reforço anual"],
           },
           nextDueDate: {
             type: Date,

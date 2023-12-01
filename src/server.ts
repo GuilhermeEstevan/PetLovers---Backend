@@ -22,18 +22,16 @@ const start = async () => {
   if (!URI) {
     return console.log(`Invalid Mongo URI : ${URI}`);
   }
+
   try {
     await connectDB(URI);
     scheduleBirthdayReminder();
     scheduleVaccineReminder();
 
     https.createServer(options, app).listen(port, () => {
-      console.log(`Server is running on port ${port}`);
+      console.log(`Server is running on port ${port} with HTTPS`);
     });
 
-    // app.listen(port, () => {
-    //   console.log(`Server is running on port ${port}`);
-    // });
   } catch (error) {
     console.log(error);
   }

@@ -22,8 +22,12 @@ cloudinary.config({
 });
 
 // CORS
-app.use(cors());
-
+app.use(
+  cors({
+    origin: ["https://petloverswebsite.netlify.app", "http://localhost:5173"],
+  })
+);
+app.options("*", cors());
 // Documentation
 app.get("/", (req, res) => {
   res.send("<h1>PetLovers API</h1>");

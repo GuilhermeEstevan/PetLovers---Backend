@@ -3,7 +3,7 @@ import connectDB from "./DB/connect";
 import scheduleBirthdayReminder from "./Utils/Reminders/petBirthdayReminder";
 import scheduleVaccineReminder from "./Utils/Reminders/VaccineDueDateReminder";
 
-const port: number = Number(process.env.PORT) || 443;
+const port: number = Number(process.env.PORT) || 3000;
 
 const start = async () => {
   const URI = process.env.MONGO_URI;

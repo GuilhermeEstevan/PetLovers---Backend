@@ -7,19 +7,19 @@ const PetSchema = new mongoose.Schema<PetsDocument>(
     name: {
       type: String,
       minlength: 2,
-      maxlength: 20,
+      maxlength: 30,
       required: [true, "Por favor, forneça o valor do campo Name"],
     },
     species: {
       type: String,
       minlength: 3,
-      maxlength: 20,
+      maxlength: 30,
       required: [true, "Por favor, forneça o valor do campo Species"],
     },
     breed: {
       type: String,
       minlength: 3,
-      maxlength: 20,
+      maxlength: 30,
       required: [true, "Por favor, forneça o valor do campo Breed"],
     },
     gender: {

@@ -67,7 +67,7 @@ const birthDayReminder = async () => {
 };
 
 const scheduleBirthdayReminder = () => {
-  cron.schedule("10 33 12 * * *", async () => {
+  cron.schedule("00 10 08 * * *", async () => {
     console.log("Cron job started at", new Date().toLocaleString());
     console.log("Birthday reminder");
     await birthDayReminder();

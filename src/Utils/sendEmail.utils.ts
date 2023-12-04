@@ -44,17 +44,17 @@ class EmailService {
       body: {
         name: userName,
         intro:
-          "You have received this email because a password reset request for your account was received.",
+          "Você recebeu este e-mail porque foi recebido um pedido de redefinição de senha para a sua conta.",
         action: {
-          instructions: "Click the button below to reset your password:",
+          instructions: "Clique no botão abaixo para redefinir sua senha:",
           button: {
             color: "#DC4D2F",
-            text: "Reset your password",
-            link: `https://localhost:5173/resetPassword/${resetToken}`,
+            text: "Redefinir sua senha",
+            link: `https://petloverswebsite.netlify.app/resetPassword/${resetToken}`,
           },
         },
         outro:
-          "If you did not request a password reset, no further action is required on your part.",
+          "Se você não solicitou a redefinição de senha, nenhuma ação adicional é necessária de sua parte.",
       },
     };
 
@@ -113,10 +113,10 @@ class EmailService {
     vaccineName: string,
     doseNumber: string,
     dueDate: string,
-    nextDose:string
+    nextDose: string
   ) {
     const mailGenerator = new Mailgen({
-      theme: "cerberus", 
+      theme: "cerberus",
       product: {
         name: "PetLovers",
         link: "https://petloverswebsite.netlify.app",
@@ -164,7 +164,7 @@ class EmailService {
           button: {
             color: "#DC4D2F",
             text: "Detalhes da Vacinação",
-            link: `https://petloverswebsite.netlify.app/vaccine-details?pet=${petName}`,
+            link: `https://petloverswebsite.netlify.app`,
           },
         },
       },

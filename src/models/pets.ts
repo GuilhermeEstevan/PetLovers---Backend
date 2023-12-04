@@ -64,6 +64,7 @@ const PetSchema = new mongoose.Schema<PetsDocument>(
             ...Object.values(HealthExams),
             "banho",
             "tosa",
+            "medicamento",
           ],
         },
         description: {

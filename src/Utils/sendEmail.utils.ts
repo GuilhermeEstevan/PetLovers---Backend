@@ -42,6 +42,8 @@ class EmailService {
 
     const email = {
       body: {
+        greeting: "Olá",
+        signature: "Atenciosamente",
         name: userName,
         intro:
           "Você recebeu este e-mail porque foi recebido um pedido de redefinição de senha para a sua conta.",
@@ -62,7 +64,7 @@ class EmailService {
 
     const emailTemplate = {
       to: userEmail,
-      subject: "Reset Password",
+      subject: "Modificação de senha",
       text: emailBody,
     };
     return emailTemplate;

@@ -34,4 +34,15 @@ enum Vaccines {
   CHLAMYDIOSIS = "Vacina contra a Clamidiose",
 }
 
-export { Vaccines, HealthExams };
+const Frequency = [
+  "5 dias",
+  "10 dias",
+  "15 dias",
+  "1 mês",
+  "2 meses",
+  "3 meses",
+  "6 meses",
+  "1 ano",
+];
+
+export { Vaccines, HealthExams, Frequency };

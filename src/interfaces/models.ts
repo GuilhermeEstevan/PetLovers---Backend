@@ -33,6 +33,7 @@ export type TPetCard = {
   description: string;
   date: Date;
   vaccineInfo?: TVaccineInfo | undefined;
+  medicationInfo?: TMedicationInfo | undefined;
 };
 
 export type TPetGallery = {
@@ -44,5 +45,11 @@ export type TPetGallery = {
 export type TVaccineInfo = {
   vaccineType: string;
   doseNumber: string;
+  nextDueDate: string | undefined;
+};
+
+export type TMedicationInfo = {
+  medicationType: string;
+  frequency: string;
   nextDueDate: string | undefined;
 };

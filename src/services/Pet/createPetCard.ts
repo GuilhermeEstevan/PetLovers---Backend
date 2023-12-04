@@ -1,7 +1,11 @@
 import BadRequestError from "../../errors/badRequest";
 import { TPetCardRequest } from "../../interfaces/pets";
 import PetModel from "../../models/pets";
-import { TPetCard, TVaccineInfo } from "../../interfaces/models";
+import {
+  TMedicationInfo,
+  TPetCard,
+  TVaccineInfo,
+} from "../../interfaces/models";
 import { Types } from "mongoose";
 import calculateVaccineDoses from "../../Utils/calculateVaccineDoses";
 
@@ -48,6 +52,16 @@ const createPetCardService = async (
     };
   }
 
+  let medicationInfo: TMedicationInfo | undefined;
+
+  if (data.serviceType === "medicamento") {
+    medicationInfo = {
+      medicationType: "",
+      frequency: "",
+      nextDueDate: "",
+    };
+  }
+
   const newPetCard: TPetCard = {
     _id: new Types.ObjectId(),
     serviceType: data.serviceType,
@@ -55,6 +69,7 @@ const createPetCardService = async (
     description: data.description || "",
     date: data.date,
     vaccineInfo: vaccineInfo as TVaccineInfo,
+    medicationInfo: medicationInfo as TMedicationInfo,
   };
 
   pet.petCards.push(newPetCard);

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { PetsDocument } from "../interfaces/models";
-import { Vaccines, HealthExams } from "../Utils/VaccinesAndExams";
+import { Vaccines, HealthExams, Frequency } from "../Utils/cardList";
 
 const PetSchema = new mongoose.Schema<PetsDocument>(
   {
@@ -51,7 +51,7 @@ const PetSchema = new mongoose.Schema<PetsDocument>(
         serviceType: {
           type: String,
           required: [true, "Por favor, forneça o valor do campo service"],
-          enum: ["vacina", "exame", "banho", "tosa"],
+          enum: ["vacina", "exame", "banho", "tosa", "medicamento"],
         },
         service: {
           type: String,
@@ -83,6 +83,19 @@ const PetSchema = new mongoose.Schema<PetsDocument>(
           doseNumber: {
             type: String,
             enum: ["primeira", "segunda", "terceira", "reforço anual"],
+          },
+          nextDueDate: {
+            type: Date,
+          },
+        },
+        medicationInfo: {
+          medicationType: {
+            type: String,
+            enum: Object.values(Vaccines),
+          },
+          frequency: {
+            type: String,
+            enum: [...Frequency],
           },
           nextDueDate: {
             type: Date,

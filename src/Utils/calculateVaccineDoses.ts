@@ -1,5 +1,5 @@
 import BadRequestError from "../errors/badRequest";
-import { Vaccines } from "./VaccinesAndExams";
+import { Vaccines } from "./cardList";
 import { addDays } from "date-fns";
 
 type TCalculateVaccineDosesResponse = {

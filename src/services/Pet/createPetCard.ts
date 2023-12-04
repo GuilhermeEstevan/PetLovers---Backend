@@ -55,9 +55,12 @@ const createPetCardService = async (
   let medicationInfo: TMedicationInfo | undefined;
 
   if (data.serviceType === "medicamento") {
+    if (!data.medicationType || !data.frequency) {
+      throw new BadRequestError("Please provide medication type and frequency");
+    }
     medicationInfo = {
-      medicationType: "",
-      frequency: "",
+      medicationType: data.medicationType,
+      frequency: data.frequency,
       nextDueDate: "",
     };
   }

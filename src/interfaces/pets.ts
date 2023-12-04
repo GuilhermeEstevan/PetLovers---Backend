@@ -41,7 +41,9 @@ export type TPetCardRequest = {
   serviceType: string;
   service: string;
   description?: string;
+  medicationType?: string;
   doseNumber?: string;
+  frequency?: string;
   date: Date;
 };
 

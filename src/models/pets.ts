@@ -91,7 +91,6 @@ const PetSchema = new mongoose.Schema<PetsDocument>(
         medicationInfo: {
           medicationType: {
             type: String,
-            enum: Object.values(Vaccines),
           },
           frequency: {
             type: String,

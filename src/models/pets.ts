@@ -97,7 +97,7 @@ const PetSchema = new mongoose.Schema<PetsDocument>(
             type: String,
             enum: [...Frequency],
           },
-          nextDueDate: {
+          nextMedicationDate: {
             type: Date,
           },
         },

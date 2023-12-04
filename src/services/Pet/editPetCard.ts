@@ -1,6 +1,6 @@
 import calculateVaccineDoses from "../../Utils/calculateVaccineDoses";
 import BadRequestError from "../../errors/badRequest";
-import { TVaccineInfo } from "../../interfaces/models";
+import { TMedicationInfo, TVaccineInfo } from "../../interfaces/models";
 import { TEditCardRequest } from "../../interfaces/pets";
 import PetModel from "../../models/pets";
 
@@ -16,6 +16,15 @@ const editPetCardService = async (
 
   if (data.serviceType === "vacina" && data.doseNumber === undefined) {
     throw new BadRequestError("Please provide doseNumber for vaccine service");
+  }
+
+  if (
+    data.serviceType === "medicamento" &&
+    (!data.frequency || !data.medicationType)
+  ) {
+    throw new BadRequestError(
+      "Please provide frequency and medicationType for medication service"
+    );
   }
 
   const pet = await PetModel.findOne({
@@ -51,6 +60,24 @@ const editPetCardService = async (
   } else {
     // Caso não for vacina excluir vaccineInfo
     petCard.vaccineInfo = undefined;
+  }
+
+  // CASO O NOVO PET CARD SEJA DO TIPO MEDICAMENTO
+  if (
+    data.serviceType === "medicamento" &&
+    data.medicationType &&
+    data.frequency
+  ) {
+    const medicationInfo: TMedicationInfo = {
+      medicationType: data.medicationType,
+      frequency: data.frequency,
+      nextMedicationDate: data.nextMedicationDate,
+    };
+
+    petCard.medicationInfo = medicationInfo;
+  } else {
+    // Caso não for vacina excluir vaccineInfo
+    petCard.medicationInfo = undefined;
   }
 
   petCard.serviceType = data.serviceType;

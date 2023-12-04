@@ -51,5 +51,5 @@ export type TVaccineInfo = {
 export type TMedicationInfo = {
   medicationType: string;
   frequency: string;
-  nextDueDate: string | undefined;
+  nextMedicationDate: string | undefined;
 };

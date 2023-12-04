@@ -61,7 +61,7 @@ const createPetCardService = async (
     medicationInfo = {
       medicationType: data.medicationType,
       frequency: data.frequency,
-      nextDueDate: "",
+      nextMedicationDate: "",
     };
   }
 

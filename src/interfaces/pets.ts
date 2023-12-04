@@ -55,6 +55,9 @@ export type TEditCardRequest = {
   doseNumber?: string;
   vaccineType?: string;
   nextDueDate?: Date;
+  frequency?: string;
+  medicationType?: string;
+  nextMedicationDate?: string;
 };
 
 export type TEditPetRequest = {

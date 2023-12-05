@@ -1,8 +1,7 @@
-import { tr } from "date-fns/locale";
 import { TPet } from "../../interfaces/pets";
 import PetModel from "../../models/pets";
 import UserModel from "../../models/users";
-import { throws } from "assert";
+import cron from "node-cron";
 import BadRequestError from "../../errors/badRequest";
 import { emailservice } from "../sendEmail.utils";
 
@@ -106,7 +105,7 @@ const medicationReminder = async () => {
         else return value;
       };
       const nextMedicationDate = new Date(data.nextMedicationDate);
-      const date = data.date
+      const date = data.date;
 
       const formattedNextMedicationDate = `${addLeadingZero(
         nextMedicationDate.getDate()
@@ -114,12 +113,9 @@ const medicationReminder = async () => {
         nextMedicationDate.getMonth() + 1
       }/${nextMedicationDate.getFullYear()}`;
 
-      const formattedDate = `${addLeadingZero(
-        date.getDate()
-      )}/${
+      const formattedDate = `${addLeadingZero(date.getDate())}/${
         date.getMonth() + 1
       }/${date.getFullYear()}`;
-
 
       const birthDayTemplate = emailservice.medicationReminderTemplate(
         data.email,
@@ -143,10 +139,11 @@ const medicationReminder = async () => {
 };
 
 const scheduleMedicationReminder = () => {
-  setTimeout(async () => {
-    console.log("medication reminder");
+  cron.schedule("00 20 08 * * *", async () => {
+    console.log("Cron job started at", new Date().toLocaleString());
+    console.log("Birthday reminder");
     await medicationReminder();
-  }, 5000);
+  });
 };
 
 export default scheduleMedicationReminder;

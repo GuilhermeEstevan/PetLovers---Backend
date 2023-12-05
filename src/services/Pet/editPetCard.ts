@@ -1,3 +1,4 @@
+import calculateMedicationFrequency from "../../Utils/calculateMedicationFrequency";
 import calculateVaccineDoses from "../../Utils/calculateVaccineDoses";
 import BadRequestError from "../../errors/badRequest";
 import { TMedicationInfo, TVaccineInfo } from "../../interfaces/models";
@@ -68,10 +69,14 @@ const editPetCardService = async (
     data.medicationType &&
     data.frequency
   ) {
+    const nextMedicationDate = calculateMedicationFrequency(
+      data.date,
+      data.frequency
+    );
     const medicationInfo: TMedicationInfo = {
       medicationType: data.medicationType,
       frequency: data.frequency,
-      nextMedicationDate: data.nextMedicationDate,
+      nextMedicationDate: nextMedicationDate,
     };
 
     petCard.medicationInfo = medicationInfo;

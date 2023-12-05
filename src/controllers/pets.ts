@@ -15,7 +15,6 @@ const createPet = async (
 ): Promise<Response<TPet>> => {
   const { userId } = res.locals;
   const pet = await createPetService(req.body, userId);
-  console.log(pet);
 
   return res.status(StatusCodes.CREATED).json({ pet });
 };

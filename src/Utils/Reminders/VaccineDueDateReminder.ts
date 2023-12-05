@@ -26,17 +26,17 @@ const vaccineDueDateReminder = async () => {
   const allPets: TPet[] = await PetModel.find({});
 
   // FILTRAR OS PETS COM CARTAO != EMPTY
-  const petWithFilledCard = allPets.filter((pet) => {
-    if (pet.petCards && pet.petCards.length > 0 && pet.petCards != null) {
+  const petsWithFilledCard = allPets.filter((pet) => {
+    if (pet.petCards && pet.petCards.length > 0) {
       return pet;
     }
   });
-  //   console.log(petWithFilledCard);
+  //   console.log(petsWithFilledCard);
 
   const VaccineDueDateReminderData: TVaccineDueDateReminder[] = [];
 
-  //Mapear os petWithFilledCard
-  petWithFilledCard.map((pet) => {
+  //Mapear os petsWithFilledCard
+  petsWithFilledCard.map((pet) => {
     const petCard = pet.petCards;
     // Mapear os item com serviceType === "vacina"
     const vaccinesForPet = petCard?.filter((petCardItem) => {
@@ -81,6 +81,8 @@ const vaccineDueDateReminder = async () => {
             if (value < 10) return `0${value}`;
             else return value;
           };
+          console.log(dueDate);
+
           const formattedDueDate = `${addLeadingZero(dueDate.getDate())}/${
             dueDate.getMonth() + 1
           }/${dueDate.getFullYear()}`;
@@ -90,6 +92,9 @@ const vaccineDueDateReminder = async () => {
             }
             if (doseNumber === "segunda") {
               return "terceira";
+            }
+            if (doseNumber === "reforço anual") {
+              return "reforço anual";
             } else return "valor inválido";
           };
 
@@ -144,7 +149,7 @@ const vaccineDueDateReminder = async () => {
 const scheduleVaccineReminder = () => {
   cron.schedule("00 00 08 * * *", async () => {
     console.log("Cron job started at", new Date().toLocaleString());
-    console.log("Birthday reminder");
+    console.log("Vaccine Reminder");
     await vaccineDueDateReminder();
   });
 };

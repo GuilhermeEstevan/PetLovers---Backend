@@ -43,6 +43,21 @@ const Frequency = [
   "3 meses",
   "6 meses",
   "1 ano",
+  "última dose",
+  "dose única",
 ];
 
-export { Vaccines, HealthExams, Frequency };
+const frequencyToDays: { [key: string]: number } = {
+  "5 dias": 5,
+  "10 dias": 10,
+  "15 dias": 15,
+  "1 mês": 30,
+  "2 meses": 60,
+  "3 meses": 90,
+  "6 meses": 180,
+  "1 ano": 365,
+  "última dose": 0,
+  "dose única": 0,
+};
+
+export { Vaccines, HealthExams, Frequency, frequencyToDays };

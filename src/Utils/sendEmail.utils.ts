@@ -14,7 +14,7 @@ class EmailService {
       });
 
       await transporter.sendMail({
-        from: "guilhermeestevangui@hotmail.com",
+        from: "petlovers-app@hotmail.com",
         to,
         subject,
         html: text,
@@ -84,7 +84,7 @@ class EmailService {
         greeting: "Olá",
         signature: "Atenciosamente",
         name: userName,
-        intro: `Desejamos um feliz aniversário para o ${petName} ! 🎉🐾`,
+        intro: `Desejamos um feliz aniversário para ${petName} ! 🎉🐾`,
         outro:
           "Esperamos que vocês tenham um dia repleto de alegria e momentos especiais juntos.",
         action: {
@@ -139,11 +139,17 @@ class EmailService {
             },
             {
               item: "Já tomou:",
-              descrição: `${doseNumber} dose`,
+              descrição: `${
+                doseNumber === "reforço anual"
+                  ? doseNumber
+                  : doseNumber + " dose"
+              }`,
             },
             {
               item: "Próxima:",
-              descrição: `${nextDose} dose`,
+              descrição: `${
+                nextDose === "reforço anual" ? nextDose : nextDose + " dose"
+              }`,
             },
             {
               item: "Data de Vencimento",
@@ -153,7 +159,7 @@ class EmailService {
           columns: {
             // Ajuste as larguras das colunas conforme necessário
             customWidth: {
-              item: "20%",
+              item: "30%",
               description: "80%",
             },
             // Adicione mais propriedades de estilo se necessário
@@ -166,6 +172,86 @@ class EmailService {
           button: {
             color: "#DC4D2F",
             text: "Detalhes da Vacinação",
+            link: `https://petloverswebsite.netlify.app`,
+          },
+        },
+      },
+    };
+
+    const emailBody = mailGenerator.generate(email);
+
+    const emailTemplate = {
+      to: userEmail,
+      subject: `Lembrete de Vacinação para ${petName}`,
+      text: emailBody,
+    };
+
+    return emailTemplate;
+  }
+
+  medicationReminderTemplate(
+    userEmail: string,
+    userName: string,
+    petName: string,
+    medicationType: string,
+    frequency: string,
+    nextMedicationDate: string,
+    description: string,
+    date: string
+  ) {
+    const mailGenerator = new Mailgen({
+      theme: "cerberus",
+      product: {
+        name: "PetLovers",
+        link: "https://petloverswebsite.netlify.app",
+      },
+    });
+
+    const email = {
+      body: {
+        greeting: "Olá",
+        signature: "Atenciosamente",
+        name: userName,
+        intro: `Lembrete de Medicamento para ${petName} 🐾`,
+        table: {
+          data: [
+            {
+              item: "Medicamento",
+              descrição: medicationType.toUpperCase(),
+            },
+            {
+              item: "Tomou em:",
+              descrição: date,
+            },
+            {
+              item: "Frequência:",
+              descrição: frequency,
+            },
+            {
+              item: "Vencimento:",
+              descrição: nextMedicationDate,
+            },
+            {
+              item: "Descrição",
+              descrição: description,
+            },
+          ],
+          columns: {
+            // Ajuste as larguras das colunas conforme necessário
+            customWidth: {
+              item: "30%",
+              description: "80%",
+            },
+            // Adicione mais propriedades de estilo se necessário
+          },
+        },
+        outro:
+          "Por favor, não se esqueça de administrar o medicamento ao seu querido pet conforme as orientações. A saúde do seu animalzinho é importante para nós!",
+        action: {
+          instructions: "Clique no botão abaixo para mais informações:",
+          button: {
+            color: "#DC4D2F",
+            text: "Atualize a carteirinha",
             link: `https://petloverswebsite.netlify.app`,
           },
         },

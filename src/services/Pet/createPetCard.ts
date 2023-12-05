@@ -8,6 +8,7 @@ import {
 } from "../../interfaces/models";
 import { Types } from "mongoose";
 import calculateVaccineDoses from "../../Utils/calculateVaccineDoses";
+import calculateMedicationFrequency from "../../Utils/calculateMedicationFrequency";
 
 const createPetCardService = async (
   data: TPetCardRequest,
@@ -17,7 +18,6 @@ const createPetCardService = async (
   if (data.serviceType === "" || data.service === "" || !data.date) {
     throw new BadRequestError("Please Provide service, serviceType and date");
   }
-  console.log(data);
 
   const pet = await PetModel.findOne({
     createdBy: userId,
@@ -43,7 +43,6 @@ const createPetCardService = async (
       data.date,
       data.doseNumber
     );
-    console.log(nextDueDateResult);
 
     vaccineInfo = {
       vaccineType: data.service,
@@ -58,10 +57,14 @@ const createPetCardService = async (
     if (!data.medicationType || !data.frequency) {
       throw new BadRequestError("Please provide medication type and frequency");
     }
+    const nextMedicationDate = calculateMedicationFrequency(
+      data.date,
+      data.frequency
+    );
     medicationInfo = {
       medicationType: data.medicationType,
       frequency: data.frequency,
-      nextMedicationDate: "",
+      nextMedicationDate: nextMedicationDate,
     };
   }
 
@@ -75,6 +78,8 @@ const createPetCardService = async (
     medicationInfo: medicationInfo as TMedicationInfo,
   };
 
+  console.log(newPetCard);
+  
   pet.petCards.push(newPetCard);
   await pet.save();
 

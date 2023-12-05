@@ -139,7 +139,7 @@ const medicationReminder = async () => {
 };
 
 const scheduleMedicationReminder = () => {
-  cron.schedule("00 20 08 * * *", async () => {
+  cron.schedule("00 00 08 * * *", async () => {
     console.log("Cron job started at", new Date().toLocaleString());
     console.log("Birthday reminder");
     await medicationReminder();

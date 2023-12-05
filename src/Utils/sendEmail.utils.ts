@@ -159,7 +159,7 @@ class EmailService {
           columns: {
             // Ajuste as larguras das colunas conforme necessário
             customWidth: {
-              item: "30%",
+              item: "35%",
               description: "80%",
             },
             // Adicione mais propriedades de estilo se necessário
@@ -239,7 +239,7 @@ class EmailService {
           columns: {
             // Ajuste as larguras das colunas conforme necessário
             customWidth: {
-              item: "30%",
+              item: "35%",
               description: "80%",
             },
             // Adicione mais propriedades de estilo se necessário

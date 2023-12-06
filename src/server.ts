@@ -7,7 +7,7 @@ import fs from "fs";
 import path from "path";
 import scheduleMedicationReminder from "./Utils/Reminders/medicationReminder";
 
-const port: number = Number(process.env.PORT) || 3001;
+const port: number = Number(process.env.PORT) || 3000;
 const isProduction: boolean = process.env.ISPRODUCTION === "production";
 
 if (isProduction) {

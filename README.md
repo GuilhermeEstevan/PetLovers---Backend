@@ -1,95 +1,45 @@
-# Pet Lovers - Plataforma para Cuidado com Pets
+# Pet Lovers - Backend
 
+## Descrição do Projeto
 
+O **Pet Lovers** é uma plataforma inovadora desenvolvida para proporcionar aos amantes de animais uma experiência intuitiva e eficiente no cuidado de seus pets. Esta plataforma permite que os usuários registrem informações importantes sobre seus companheiros de quatro patas, tenham acesso a uma carteirinha virtual para o controle de medicações, exames, vacinas e até mesmo para o registro do último banho do bichinho. :dog2:
 
 ## 🚀 Começando
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
-
 ### 📋 Pré-requisitos
 
-De que coisas você precisa para instalar o software e como instalá-lo?
+Certifique-se de ter as seguintes ferramentas instaladas:
 
-```
-Dar exemplos
-```
+- Node.js
+- MongoDB
+
+Além disso, é necessário criar um arquivo `.env` na raiz do projeto e configurar as variáveis de ambiente. Veja um exemplo no arquivo `.env.example`.
 
 ### 🔧 Instalação
 
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
+1. Clone o repositório:
 
-Diga como essa etapa será:
+- git clone https://github.com/seu-usuario/petlovers_backend.git
 
-```
-Dar exemplos
-```
+2. Instale as dependências:
 
-E repita:
+- npm install
 
-```
-Até finalizar
-```
+3. Inicie o servidor de desenvolvimento:
 
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
-
-## ⚙️ Executando os testes
-
-Explicar como executar os testes automatizados para este sistema.
-
-### 🔩 Analise os testes de ponta a ponta
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-### ⌨️ E testes de estilo de codificação
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-## 📦 Implantação
-
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
+- npm run dev
 
 ## 🛠️ Construído com
 
 Mencione as ferramentas que você usou para criar seu projeto
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
-
-## 🖇️ Colaborando
-
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
-
-## 📌 Versão
-
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
-
-## ✒️ Autores
-
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
-
-* **Um desenvolvedor** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
-
-Você também pode ver a lista de todos os [colaboradores](https://github.com/usuario/projeto/colaboradores) que participaram deste projeto.
+- [Express](https://expressjs.com/) - Framework web para Node.js
+- [TypeScript](https://www.typescriptlang.org/)
+- [MongoDB](https://www.mongodb.com/) - Banco de dados NoSQL
+- [Cloudinary](https://cloudinary.com/) - Plataforma de gerenciamento de imagens na nuvem
 
 ## 📄 Licença
 
 Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
-
-## 🎁 Expressões de gratidão
-
-* Conte a outras pessoas sobre este projeto 📢;
-* Convide alguém da equipe para uma cerveja 🍺;
-* Um agradecimento publicamente 🫂;
-* etc.

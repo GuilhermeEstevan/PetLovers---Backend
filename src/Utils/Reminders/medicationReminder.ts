@@ -113,9 +113,9 @@ const medicationReminder = async () => {
         nextMedicationDate.getMonth() + 1
       }/${nextMedicationDate.getFullYear()}`;
 
-      const formattedDate = `${addLeadingZero(date.getDate())}/${
+      const formattedDate = `${addLeadingZero(date.getDate())}/${addLeadingZero(
         date.getMonth() + 1
-      }/${date.getFullYear()}`;
+      )}/${date.getFullYear()}`;
 
       const birthDayTemplate = emailservice.medicationReminderTemplate(
         data.email,
@@ -139,11 +139,18 @@ const medicationReminder = async () => {
 };
 
 const scheduleMedicationReminder = () => {
-  cron.schedule("00 00 08 * * *", async () => {
-    console.log("Cron job started at", new Date().toLocaleString());
-    console.log("Birthday reminder");
+  setTimeout(async () => {
+    console.log("vaccine reminder");
     await medicationReminder();
-  });
+  }, 5000);
 };
+
+// const scheduleMedicationReminder = () => {
+//   cron.schedule("00 00 08 * * *", async () => {
+//     console.log("Cron job started at", new Date().toLocaleString());
+//     console.log("Birthday reminder");
+//     await medicationReminder();
+//   });
+// };
 
 export default scheduleMedicationReminder;

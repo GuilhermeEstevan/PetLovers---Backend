@@ -83,9 +83,11 @@ const vaccineDueDateReminder = async () => {
           };
           console.log(dueDate);
 
-          const formattedDueDate = `${addLeadingZero(dueDate.getDate())}/${
+          const formattedDueDate = `${addLeadingZero(
+            dueDate.getDate()
+          )}/${addLeadingZero(
             dueDate.getMonth() + 1
-          }/${dueDate.getFullYear()}`;
+          )}/${dueDate.getFullYear()}`;
           const nextDose = (doseNumber: string) => {
             if (doseNumber === "primeira") {
               return "segunda";

@@ -18,21 +18,27 @@ const deletePetService = async (
   }
 
   //   Deletar do cloudinary
-  const imageToDelete = pet.photo;
+  const imagesArray = [];
+  imagesArray.push(pet.photo);
+  pet.gallery.forEach((photo) => imagesArray.push(photo.image));
 
-  const imageUrlParts = imageToDelete.split("/");
-  let publicId = imageUrlParts
-    .slice(imageUrlParts.indexOf("PetLovers"))
-    .join("/");
-  publicId = publicId.replace(/\.[^.]+$/, "");
-  console.log(publicId);
+  await Promise.all(
+    imagesArray.map(async (photo) => {
+      const imageUrlParts = photo.split("/");
+      let publicId = imageUrlParts
+        .slice(imageUrlParts.indexOf("PetLovers"))
+        .join("/");
+      publicId = publicId.replace(/\.[^.]+$/, "");
+      console.log(publicId);
 
-  try {
-    await cloudinary.uploader.destroy(publicId);
-  } catch (error) {
-    console.log("Erro ao excluir imagem do Cloudinary:", error);
-    throw new BadRequestError("Falha ao excluir imagem do Cloudinary");
-  }
+      try {
+        await cloudinary.uploader.destroy(publicId);
+      } catch (error) {
+        console.log("Erro ao excluir imagem do Cloudinary:", error);
+        throw new BadRequestError("Falha ao excluir imagem do Cloudinary");
+      }
+    })
+  );
 
   return "Pet Deleted Successfully!";
 };

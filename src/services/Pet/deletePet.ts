@@ -22,6 +22,7 @@ const deletePetService = async (
   imagesArray.push(pet.photo);
   pet.gallery.forEach((photo) => imagesArray.push(photo.image));
 
+  
   await Promise.all(
     imagesArray.map(async (photo) => {
       const imageUrlParts = photo.split("/");

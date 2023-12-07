@@ -138,19 +138,19 @@ const medicationReminder = async () => {
   console.log(medicationEmailData);
 };
 
-const scheduleMedicationReminder = () => {
-  setTimeout(async () => {
-    console.log("vaccine reminder");
-    await medicationReminder();
-  }, 5000);
-};
-
 // const scheduleMedicationReminder = () => {
-//   cron.schedule("00 00 08 * * *", async () => {
-//     console.log("Cron job started at", new Date().toLocaleString());
-//     console.log("Birthday reminder");
+//   setTimeout(async () => {
+//     console.log("vaccine reminder");
 //     await medicationReminder();
-//   });
+//   }, 5000);
 // };
+
+const scheduleMedicationReminder = () => {
+  cron.schedule("00 00 08 * * *", async () => {
+    console.log("Cron job started at", new Date().toLocaleString());
+    console.log("Birthday reminder");
+    await medicationReminder();
+  });
+};
 
 export default scheduleMedicationReminder;

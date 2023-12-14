@@ -14,6 +14,11 @@ const registerUserService = async (
     throw new BadRequestError("Please provide name, email and password!");
   }
 
+  const userAlreadyExists = await UserModel.find({ email: email });
+  if (userAlreadyExists) {
+    throw new BadRequestError("user Already Exist");
+  }
+
   const user = await UserModel.create(data);
 
   const response: TRegisterUserResponse = {

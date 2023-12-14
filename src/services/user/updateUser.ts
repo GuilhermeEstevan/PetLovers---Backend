@@ -31,6 +31,11 @@ const updateUserService = async (
     throw new BadRequestError("No user found");
   }
 
+  const emailExists = await UserModel.find({ email: email });
+  if (emailExists) {
+    throw new BadRequestError("Email already being used by another user");
+  }
+
   user.name = name;
   user.lastName = lastName;
   user.email = email;

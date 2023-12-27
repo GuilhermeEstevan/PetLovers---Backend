@@ -24,11 +24,12 @@ cloudinary.config({
 // CORS
 app.use(
   cors({
-    origin: [
-      "https://petloverswebsite.netlify.app",
-      "http://localhost:5173",
-      "https://www.petlovers.app.br",
-    ],
+    origin: "*",
+    // origin: [
+    //   "https://petloverswebsite.netlify.app",
+    //   "http://localhost:5173",
+    //   "https://www.petlovers.app.br",
+    // ],
   })
 );
 app.options("*", cors());
